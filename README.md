@@ -48,3 +48,11 @@ tags:
 ### 10. Tinker 双足机器人
 
 入口：[tinker.md](robotics/tinker/tinker.md)
+
+---
+
+## 嵌入式音频管线与算力优化
+
+（非机器人领域）面向资源受限 MCU 的实时音频管线：编解码、降噪、神经网络推理、IIR/FFT。核心是在固定预算内做到 bit-exact 实时。
+
+入口：[embedded-audio.md](embedded-audio/embedded-audio.md)
