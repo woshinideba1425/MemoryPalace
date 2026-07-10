@@ -13,7 +13,8 @@ tags:
 
 | 主题 | 文档 | 核心内容 |
 |------|------|---------|
-| nnom 降噪管线算力优化 | [nnom_eq_optimization.md](nnom_eq_optimization.md) | EQ 环形缓冲 bit-exact 4.3×、CMSIS-NN q7 vendor 2.1×、定点 vs 浮点决策、bit-exact 铁律 |
+| nnom 优化状态（简版） | [nnom_status.md](nnom_status.md) | 核心结论/关键数据/SpeexDSP 对比/瓶颈/优化后实测——一页速览 |
+| nnom 降噪管线算力优化（详版） | [nnom_eq_optimization.md](nnom_eq_optimization.md) | EQ 环形缓冲 bit-exact 4.3×、CMSIS-NN q7 vendor 2.1×、定点 vs 浮点决策、bit-exact 铁律 |
 
 ## 通用经验（跨项目复用）
 
