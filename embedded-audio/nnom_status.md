@@ -86,3 +86,9 @@ EQ（原第二瓶颈 5.64 ms）已优化到 1.42 ms（环形缓冲 + 跳过 b1=0
 ## 详细分析
 
 完整 10 节优化报告（背景/瓶颈分析/优化方案/数据流/性能对比/正确性验证/风险/复盘）见 [nnom_eq_optimization.md](nnom_eq_optimization.md)。
+
+---
+
+## 相关节点
+
+- [rtc_playback_feedback_no_aec.md](rtc_playback_feedback_no_aec.md)：NS ≠ AEC——本文优化的是采集链降噪算力，但降噪无法去除"扬声器播放又被采回"的相干回声。Clip 无 AEC，RTC 实时监听必须耳机或物理隔离，否则起 Larsen 反馈环。

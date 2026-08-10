@@ -14,3 +14,14 @@
 
 - **Silero VAD:** [https://github.com/snakers4/silero-vad](https://github.com/snakers4/silero-vad)
   - 轻量 ONNX VAD,本项目实时流水线用 32ms 窗 + 阈值 0.5 切段
+
+## 声学反馈 / 回声消除(acoustic feedback / AEC)
+
+- **SpeexDSP 官方手册 §Echo Cancellation:** [https://www.speex.org/docs/manual/speex-manual/node7.html](https://www.speex.org/docs/manual/speex-manual/node7.html)
+  - MDF AEC 用法:`speex_echo_state_init` / `speex_echo_cancellation()` / `speex_echo_playback()`(喂播放参考帧);本仓库实现在 `lib/speexdsp/speexdsp/libspeexdsp/mdf.c`,API 头 `lib/speexdsp/speexdsp/include/speex/speex_echo.h`(能力在树内,产品采集链未启用)
+- **Audio feedback(Larsen 效应):** [https://en.wikipedia.org/wiki/Audio_feedback](https://en.wikipedia.org/wiki/Audio_feedback)
+  - 环路增益 ≥1 时起振;解释扬声器外放被麦克风采回产生啸叫/规律噪音的机制
+- **Echo suppression and cancellation:** [https://en.wikipedia.org/wiki/Echo_suppression_and_cancellation](https://en.wikipedia.org/wiki/Echo_suppression_and_cancellation)
+  - AEC 原理概览:必须拿到播放参考信号才能消除回声;与降噪(NS)是正交问题
+- **WebRTC AEC3 源码:** [https://webrtc.googlesource.com/src/+/refs/heads/main/modules/audio_processing/aec3/](https://webrtc.googlesource.com/src/+/refs/heads/main/modules/audio_processing/aec3/)
+  - 播放侧/主机侧 AEC 参考实现(参考信号与播放数据同在一侧的场景,如 RTC 主机外放)
