@@ -15,6 +15,7 @@ tags:
 |------|------|---------|
 | nnom 优化状态（简版） | [nnom_status.md](nnom_status.md) | 核心结论/关键数据/SpeexDSP 对比/瓶颈/优化后实测——一页速览 |
 | nnom 降噪管线算力优化（详版） | [nnom_eq_optimization.md](nnom_eq_optimization.md) | EQ 环形缓冲 bit-exact 4.3×、CMSIS-NN q7 vendor 2.1×、定点 vs 浮点决策、bit-exact 铁律 |
+| 实时说话人分离（流式短段） | [speaker_diarization_realtime.md](speaker_diarization_realtime.md) | CAM++ 192 维 embedding + Silero VAD 切段；最近质心 provisional 即时赋号 + 每 3 段重聚类 + silhouette 选 k（>0.1 才接受 k≥2）；eigengap 少段坍缩失败史；长录音官方 spectral 最优（准确率 0.9077），流式少段用 silhouette |
 
 ## 通用经验（跨项目复用）
 
@@ -22,3 +23,4 @@ tags:
 - **bit-exact 优化铁律**：浮点同值同序才 bit-exact。可改访问模式（环形 vs 移位）、跳过恒 0 项，但不能合并乘法。先建 FROZEN reference + lockstep 测试。
 - **vendor 被删 API**：`git log -S 'symbol'` 找删除提交，从父提交抽函数体，配兼容头补回被删 inline，叠在新 API 之上。
 - **定点 vs 浮点**：有 1-cycle FPU 的核（M4F/M33/M55），float IIR 通常赢定点。定点 IIR 的坑：系数近 ±2 超 Q15；高 Q 谐振放大量化，bit-exact 要高 Q 系数 + 高 Q 状态（易溢出 int64，需 da1/da2 分解）。
+- **少段聚类勿用 eigengap**：段数 <~10 时相似度图无显著谱隙，k 坍缩成 1（判据：阈值扫描各行结果完全相同）；流式少段用 silhouette + 增量重聚类，长录音离线才用官方 spectral 默认参数（见 [speaker_diarization_realtime.md](speaker_diarization_realtime.md) §5）。
