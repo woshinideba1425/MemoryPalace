@@ -20,6 +20,7 @@ tags:
 | DMA 原理与配置 | [dma.md](dma.md) | DMA 控制器架构、双缓冲/乒乓缓冲模式、DMA+中断配合、STM32 典型配置 |
 | 内存与栈管理 | [memory_and_stack.md](memory_and_stack.md) | Heap_1~Heap_5 源码分析、栈溢出检测 `configCHECK_FOR_STACK_OVERFLOW`、堆与栈区别、看门狗策略 |
 | ESP32 SDMMC/PSRAM 对齐踩坑 | [esp32_sdmmc_psram_alignment.md](esp32_sdmmc_psram_alignment.md) | FATFS 内嵌缓冲未 cache-line 对齐 → SDMMC 慢路径 → DMA SRAM 耗尽 → SDIO + MJPEG + pthread 雪崩；`__builtin_return_address` + 限流统计排查法；`CONFIG_FATFS_USE_DYN_BUFFERS` 修复 |
+| Zephyr USB MSC 动态介质交接 | [zephyr_usb_msc_dynamic_media_handoff.md](zephyr_usb_msc_dynamic_media_handoff.md) | SD 卡在主机(MSC)与固件(FATFS)间共享:不重枚举 USB,用代理盘把介质报成弹出(SCSI NOT READY / MEDIUM NOT PRESENT);`usbd_register_class` 运行时限制、`disk_access` 代理、acquire/release 引用计数、主机侧 `lsblk` 实测与"安全弹出"陷阱 |
 
 ## CMake 构建系统
 

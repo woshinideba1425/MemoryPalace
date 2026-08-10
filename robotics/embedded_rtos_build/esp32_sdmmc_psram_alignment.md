@@ -202,3 +202,7 @@ void* ff_memalloc(unsigned msize) {
 | `esp-idf/components/fatfs/src/ff.c:1082` | `move_window` (fs->win 中转点) |
 | `esp-idf/components/fatfs/src/ff.c:4025` | `f_read` 中走 fp->buf 中转点 |
 | `managed_components/espressif__esp_hosted/host/port/esp/freertos/src/port_esp_hosted_host_os.c:131` | `hosted_malloc_align` 用 INTERNAL+DMA |
+
+## 9. 相关节点
+
+- [zephyr_usb_msc_dynamic_media_handoff.md](zephyr_usb_msc_dynamic_media_handoff.md):同为 FATFS+SD 主题——存储所有权在 USB 主机与固件之间的动态交接(本篇讲数据路径对齐,那篇讲所有权交接)。
